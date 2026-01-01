@@ -20,16 +20,13 @@ import argparse
 import random
 import time
 import logging
-from urllib.parse import urlparse, urljoin
-from datetime import datetime
+from urllib.parse import urlparse
 import sys
 
 try:
     import undetected_chromedriver as uc
     from selenium.webdriver.common.by import By
     from selenium.webdriver.common.action_chains import ActionChains
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
     from selenium.common.exceptions import TimeoutException, WebDriverException
 except ImportError as e:
     print(f"Error: Missing required package - {e}")
