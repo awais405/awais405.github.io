@@ -1,3 +1,4 @@
+<?php
 /**
  * Plugin Name: Human-Like Traffic Simulator
  * Plugin URI: https://estimationhub.me
@@ -448,14 +449,18 @@ function traffic_simulator_shortcode() {
                                 }
                                 
                                 try {
-                                    const maxScroll = doc.documentElement.scrollHeight - win.innerHeight;
-                                    const targetScroll = (maxScroll * scrollDepth) / 100;
-                                    const scrollAmount = (targetScroll / scrollSteps) * (currentStep + 1);
+                                    const maxScroll = Math.max(0, doc.documentElement.scrollHeight - win.innerHeight);
                                     
-                                    win.scrollTo({
-                                        top: scrollAmount,
-                                        behavior: 'smooth'
-                                    });
+                                    // Only scroll if there's scrollable content
+                                    if (maxScroll > 0) {
+                                        const targetScroll = (maxScroll * scrollDepth) / 100;
+                                        const scrollAmount = (targetScroll / scrollSteps) * (currentStep + 1);
+                                        
+                                        win.scrollTo({
+                                            top: scrollAmount,
+                                            behavior: 'smooth'
+                                        });
+                                    }
                                     
                                     currentStep++;
                                     
